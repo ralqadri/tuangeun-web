@@ -32,8 +32,8 @@ class Site extends Controller
         return view('home');
     }
 
-    public function home2()
+    public function dashboardLayout()
     {
-        return view('home2');
+        return view('layout.dashboardMain');
     }
 }
