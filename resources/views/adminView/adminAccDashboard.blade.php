@@ -15,18 +15,18 @@
               <th>email</th>
               <th>Action</th>
 
-              {{-- @foreach($resto as $r)
+              @foreach($admin as $a)
                 <tr>
-                  <td>{{ $r->id_resto }}</td>
-                  <td>{{ $r->name_resto }}</td>
-                  <td>{{ $r->desc_resto }}</td>
-                  <td>{{ $r->category }}</td>
+                  <td>{{ $a->id_admin }}</td>
+                  <td>{{ $a->username }}</td>
+                  <td>{{ $a->password }}</td>
+                  <td>{{ $a->email }}</td>
                   <td>
-                    <a href="/product/{{ $r->id }}/edit" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="/user/{{ $a->id_admin }}/edit" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
+                    <a href="#" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
                   </td>
                 </tr>
-              @endforeach --}}
+              @endforeach
           </tr>
       </table>
     </div>

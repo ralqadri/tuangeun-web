@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ImgController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\ratingController;
 use App\Http\Controllers\RestoController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +26,12 @@ Route::post('/', function () {
 });
  */
 
-Route::get('/',[Site::class, 'index']);
-Route::post('/',[Site::class, 'auth']);
+
+//LOGIN
+Route::get('/login', [loginController::class, 'index']);
+Route::post('/login', [loginController::class, 'authenticate']);
+
+
 Route::get('/dashboard',[Site::class, 'dashboardLayout']);
 
 //Restaurant
@@ -33,6 +39,8 @@ Route::get('/dashboard/restaurant',[RestoController::class, 'index']);
 Route::get('/dashboard/restaurant/create',[RestoController::class, 'create']);
 //imgRestaurant
 Route::get('/dashboard/imgRestaurant',[ImgController::class, 'index']);
+//Rating
+Route::get('/dashboard/rating',[ratingController::class, 'index']);
 //User
 Route::get('/dashboard/user',[UserController::class, 'index']);
 //Admin

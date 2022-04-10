@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head> 
+    <head>
         <title>Log in Page - Admin</title>
         <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     </head>
     <body>
         <div class="main">
+            <label>Sign In</label>
+            <p class="desc">Admin Page for Web food review in bandung</p>
+
             <div class="loginForm" >
-                <form action="{{ url('/') }}" name="login" method="POST">
-                    <label>Sign In</label>
-                    <p class="desc">Admin Page for Web food review in bandung</p>
-                    <p class="desc" style="font-size: 8px">Untuk demo akun: Username->RafiRizkya, Password->1301193344</p>
+                <form action="/login" name="login" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="text" name="Username" placeholder="Enter username" required>
+                    <input class="form-control" type="text" name="username" id="username" placeholder="Enter username" required autofocus>
                     <br>
-                    <input type="password" name="Password" placeholder="password" required>
+                    <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
                     <br>
                     <input type="submit" name="Submit" value="Login">
                 </form>
             </div>
         </div>
-        
+
+        @if(session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <p class="text-danger">{{ session('loginError') }}<p>
+        </div>
+        @endif
         <img src="{{ asset('footer.svg') }}" class="footersvg">
     </body>
 </html>

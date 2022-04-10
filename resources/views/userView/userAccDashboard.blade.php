@@ -12,20 +12,24 @@
               <th>Username</th>
               <th>Password</th>
               <th>Nama</th>
+              <th>Email</th>
+              <th>Profile Picture</th>
               <th>Action</th>
 
-              {{-- @foreach($resto as $r)
+              @foreach($user as $u)
                 <tr>
-                  <td>{{ $r->id_resto }}</td>
-                  <td>{{ $r->name_resto }}</td>
-                  <td>{{ $r->desc_resto }}</td>
-                  <td>{{ $r->category }}</td>
+                  <td>{{ $u->id_user }}</td>
+                  <td>{{ $u->username }}</td>
+                  <td>{{ $u->password }}</td>
+                  <td>{{ $u->full_name }}</td>
+                  <td>{{ $u->email }}</td>
+                  <td>{{ $u->profpic }}</td>
                   <td>
-                    <a href="/product/{{ $r->id }}/edit" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="/user/{{ $u->id }}/edit" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
+                    <a href="#" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
                   </td>
                 </tr>
-              @endforeach --}}
+              @endforeach
           </tr>
       </table>
     </div>

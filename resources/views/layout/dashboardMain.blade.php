@@ -38,6 +38,12 @@
                 <span class="mx-2">Image Database</span>
             </li>
         </a>
+        <a href="/dashboard/rating">
+            <li href="#" class="nav-link">
+                <i class='bx bxs-star-half'></i>
+                <span class="mx-2">Rating</span>
+            </li>
+        </a>
         <a href="/dashboard/user">
             <li href="#" class="nav-link">
                 <i class='bx bxs-user-account'></i>
@@ -66,7 +72,7 @@
       <!-- Top Nav -->
       <nav class="navbar top-navbar navbar-light bg-light px-5">
         <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
-        <h6>Placeholder AdminName <i class='bx bx-chevron-down'></i></h6>
+        <h6> {{ session('username') }} <i class='bx bx-chevron-down'></i></h6>
       </nav>
       <!--End Top Nav -->
       <div>
