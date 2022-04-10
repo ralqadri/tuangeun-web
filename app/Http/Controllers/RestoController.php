@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class RestoController extends Controller
 {
@@ -30,12 +31,15 @@ class RestoController extends Controller
     // method untuk mengambil data yang dicatat di form create() dan menyimpan ke DB
     public function store(Request $req)
     {
+        $now = Carbon::now()->toDateTimeString();
         // insert data yang dipegang dari form (dalam var $req) ke DB
         DB::table('restaurants')->insert([
             'name_resto' => $req->nama,
             'desc_resto' => $req->desc,
             'category' => $req->category,
-            'alamat_resto' => $req->alamat
+            'alamat_resto' => $req->alamat,
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
 
         // redirect ke dashboard resto
@@ -55,12 +59,15 @@ class RestoController extends Controller
     // method untuk update data restoran di DB
     public function update(Request $req)
     {
+        $now = Carbon::now()->toDateTimeString();
+        
         // update data pegawai dimana id_restonya sesuai dgn id di request
         DB::table('restaurants')->where('id_resto', $req->id)->update([
             'name_resto' => $req->nama,
             'desc_resto' => $req->desc,
             'category' => $req->category,
-            'alamat_resto' => $req->alamat
+            'alamat_resto' => $req->alamat,
+            'updated_at' => $now
         ]);
 
         // redirect ke dashboard resto
