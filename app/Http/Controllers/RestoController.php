@@ -30,7 +30,6 @@ class RestoController extends Controller
     // method untuk mengambil data yang dicatat di form create() dan menyimpan ke DB
     public function store(Request $req)
     {
-        error_log($req);
         // insert data yang dipegang dari form (dalam var $req) ke DB
         DB::table('restaurants')->insert([
             'name_resto' => $req->nama,
@@ -38,6 +37,40 @@ class RestoController extends Controller
             'category' => $req->category,
             'alamat_resto' => $req->alamat
         ]);
+
+        // redirect ke dashboard resto
+        return redirect('/dashboard/restaurant');
+    }
+
+    // method untuk edit data restoran yang dipilih
+    public function edit($id)
+    {
+        // mengambil data restoran sesuai id yang dipilih
+        $resto = DB::table('restaurants')->where('id_resto', $id)->get();
+
+        // passing data restoran yang di dapat ke view restoEdit.blade.php
+        return view('restoView.restoEdit', ['resto' => $resto]);
+    }
+
+    // method untuk update data restoran di DB
+    public function update(Request $req)
+    {
+        // update data pegawai dimana id_restonya sesuai dgn id di request
+        DB::table('restaurants')->where('id_resto', $req->id)->update([
+            'name_resto' => $req->nama,
+            'desc_resto' => $req->desc,
+            'category' => $req->category,
+            'alamat_resto' => $req->alamat
+        ]);
+
+        // redirect ke dashboard resto
+        return redirect('/dashboard/restaurant');
+    }
+
+    // method untuk hapus data restoran dari DB
+    public function delete($id) {
+        // menghapus data restoran sesuai dengan id yang dipilih
+        DB::table('restaurants')->where('id_resto', $id)->delete();
 
         // redirect ke dashboard resto
         return redirect('/dashboard/restaurant');

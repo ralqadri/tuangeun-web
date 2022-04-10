@@ -35,8 +35,8 @@
                   <td>{{ $r->alamat_resto }}</td>
                   <td>{{ $r->category }}</td>
                   <td>
-                    <a href="/restaurant/{{ $r->id }}/edit" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
-                    <a href="#" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
+                    <a href="/dashboard/restaurant/edit/{{ $r->id_resto }}" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
+                    <a href="/dashboard/restaurant/delete/{{ $r->id_resto }}" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
                   </td>
                 </tr>
               @endforeach
