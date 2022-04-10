@@ -38,13 +38,13 @@ class AdminController extends Controller
         return redirect('/dashboard/admin');
     }
 
-    // method untuk masuk ke page edit data admin yang ingin di edit
+    // method untuk masuk ke page edit data admin yang dipilih
     public function edit($id)
     {
-        // cari ke DB dan simpan data admin yang ingin di edit ke $admin
+        // mengambil data admin sesuai id yang dipilih
         $admin = DB::table('admins')->where('id_admin', $id)->get();
-    
-        // passing data admin yang di dapat dari DB tadi ke view untuk form edit
+
+        // passing data admin yang di dapat ke view adminAccEdit.blade.php
         return view('adminView.adminAccEdit', ['admin' => $admin]);
     }
 
@@ -53,7 +53,7 @@ class AdminController extends Controller
     {
         $now = Carbon::now()->toDateTimeString();
         
-        // update data admin dimana id_admin sesuai dgn id di request
+        // update data admin dimana id_admin-nya sesuai dgn id di request
         DB::table('admins')->where('id_admin', $req->id)->update([
             'username' => $req->username,
             'password' => $req->password,
@@ -62,6 +62,15 @@ class AdminController extends Controller
         ]);
 
         // redirect ke dashboard admin
+        return redirect('/dashboard/admin');
+    }
+
+    // method untuk hapus data admin dari DB
+    public function delete($id) {
+        // menghapus data restoran sesuai dengan id yang dipilih
+        DB::table('admins')->where('id_admin', $id)->delete();
+
+        // redirect ke dashboard resto
         return redirect('/dashboard/admin');
     }
 }

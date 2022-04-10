@@ -23,7 +23,7 @@
                   <td>{{ $a->email }}</td>
                   <td>
                     <a href="/dashboard/admin/edit/{{ $a->id_admin }}" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
-                    <a href="#" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
+                    <a href="/dashboard/admin/delete/{{ $a->id_admin }}" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
                   </td>
                 </tr>
               @endforeach

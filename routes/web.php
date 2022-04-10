@@ -67,8 +67,14 @@ Route::get('/dashboard/admin',[AdminController::class, 'index']);
 // route get untuk masuk ke page untuk tambah data admin
 Route::get('/dashboard/admin/create', [AdminController::class, 'create']);
 // route post data admin yang ditmabah (data dari form submit)
-Route::post('dashboard/admin/store', [AdminController::class, 'store']);
+Route::post('/dashboard/admin/store', [AdminController::class, 'store']);
 
 // ! EDIT ADMIN
 // route get untuk masuk ke page data akun admin yang mau di edit
-Route::get('dashboard/admin/edit/{id}', [AdminController::class, 'edit']);
+Route::get('/dashboard/admin/edit/{id}', [AdminController::class, 'edit']);
+// route post data restoran yang akan di update
+Route::post('/dashboard/admin/update', [AdminController::class, 'update']);
+
+// ! DELETE ADMIN
+// route get untuk masuk delete admin yang mau dihapus
+Route::get('/dashboard/admin/delete/{id}', [AdminController::class, 'delete']);
