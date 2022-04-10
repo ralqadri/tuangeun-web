@@ -5,14 +5,14 @@
 
     <div class="container">
       <h3>Admin Account Database</h3>
-      <a href="/dashboard/restaurant/create" class="btn btn-primary
+      <a href="/dashboard/admin/create" class="btn btn-primary
       float-right">Tambah Account Admin</a><br /><br />
       <table class="table table-light table-bordered table-striped table-responsive-md">
           <tr>
               <th>ID Admin</th>
-              <th>username</th>
-              <th>password</th>
-              <th>email</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Email</th>
               <th>Action</th>
 
               @foreach($admin as $a)
@@ -22,7 +22,7 @@
                   <td>{{ $a->password }}</td>
                   <td>{{ $a->email }}</td>
                   <td>
-                    <a href="/user/{{ $a->id_admin }}/edit" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
+                    <a href="/dashboard/admin/edit/{{ $a->id_admin }}" class="btn btn-warning"><i class='bx bx-edit-alt' ></i> Edit</a>
                     <a href="#" class="btn btn-danger"><i class='bx bx-trash' ></i> Delete</a>
                   </td>
                 </tr>
