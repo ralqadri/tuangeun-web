@@ -37,6 +37,11 @@ Route::get('/dashboard',[Site::class, 'dashboardLayout']);
 //Restaurant
 Route::get('/dashboard/restaurant',[RestoController::class, 'index']);
 Route::get('/dashboard/restaurant/create',[RestoController::class, 'create']);
+
+//route post data yang ditambah (form submit)
+Route::post('/dashboard/restaurant/store', [RestoController::class, 'store']);
+
+
 //imgRestaurant
 Route::get('/dashboard/imgRestaurant',[ImgController::class, 'index']);
 //Rating
