@@ -38,8 +38,9 @@ Route::get('/dashboard',[Site::class, 'dashboardLayout']);
 Route::get('/dashboard/restaurant',[RestoController::class, 'index']);
 
 // ! ADD RESTAURANT
+// route get untuk masuk ke page untuk tambah data restoran
 Route::get('/dashboard/restaurant/create',[RestoController::class, 'create']);
-//route post data restoran yang ditambah (form submit)
+//route post data restoran yang ditambah (data dari form submit)
 Route::post('/dashboard/restaurant/store', [RestoController::class, 'store']);
 
 // ! EDIT RESTAURANT
@@ -58,5 +59,16 @@ Route::get('/dashboard/imgRestaurant',[ImgController::class, 'index']);
 Route::get('/dashboard/rating',[ratingController::class, 'index']);
 //User
 Route::get('/dashboard/user',[UserController::class, 'index']);
-//Admin
+
+// !! ADMIN
 Route::get('/dashboard/admin',[AdminController::class, 'index']);
+
+// ! ADD ADMIN
+// route get untuk masuk ke page untuk tambah data admin
+Route::get('/dashboard/admin/create', [AdminController::class, 'create']);
+// route post data admin yang ditmabah (data dari form submit)
+Route::post('dashboard/admin/store', [AdminController::class, 'store']);
+
+// ! EDIT ADMIN
+// route get untuk masuk ke page data akun admin yang mau di edit
+Route::get('dashboard/admin/edit/{id}', [AdminController::class, 'edit']);

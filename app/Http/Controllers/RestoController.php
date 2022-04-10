@@ -46,7 +46,7 @@ class RestoController extends Controller
         return redirect('/dashboard/restaurant');
     }
 
-    // method untuk edit data restoran yang dipilih
+    // method untuk masuk ke page edit data restoran yang dipilih
     public function edit($id)
     {
         // mengambil data restoran sesuai id yang dipilih
@@ -61,7 +61,7 @@ class RestoController extends Controller
     {
         $now = Carbon::now()->toDateTimeString();
         
-        // update data pegawai dimana id_restonya sesuai dgn id di request
+        // update data admin dimana id_restonya sesuai dgn id di request
         DB::table('restaurants')->where('id_resto', $req->id)->update([
             'name_resto' => $req->nama,
             'desc_resto' => $req->desc,
