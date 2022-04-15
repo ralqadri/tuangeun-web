@@ -22,18 +22,23 @@ class RestoController extends Controller
     //     ]);
     // }
 
-    // index: method untuk menampilkan semua (RESTful)
+    // GET: method untuk menampilkan semua (RESTful)
     public function index() {
-        return Restaurant::all();
+        return (new ResponseController)->toResponse(Restaurant::all(), 200);
     }
 
-    // UNFINISHED: method untuk menampilkan resto yang dicari (RESTful) 
-    public function show($id) {
+    // GET: method untuk menampilkan resto yang dicari (RESTful) 
+    public function show($id='') {
         $resto = Restaurant::find($id);
+        if (!empty($resto)) {
+            return (new ResponseController)->toResponse($resto, 200);
+        } else {
+            return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
+        }
     }
 
-    // index: method untuk menyimpan data (RESTful)
-    public function create(Request $req) {
+    // POST: method untuk menyimpan data (RESTful)
+    public function save(Request $req) {
         $resto = new Restaurant;
         $now = Carbon::now()->toDateTimeString();
 
@@ -45,10 +50,10 @@ class RestoController extends Controller
         $resto->updated_at = $now;
         $resto->save();
 
-        return "Data berhasil masuk.";
+        return (new ResponseController)->toResponse($resto, 200, "Data berhasil ditambah.");
     }
 
-    // index: method untuk update data (RESTful)
+    // PUT: method untuk update data (RESTful)
     public function update(Request $req) {
         // $resto = Restaurant::find($id);
         $resto = Restaurant::find($req->id);
@@ -61,15 +66,24 @@ class RestoController extends Controller
         $resto->updated_at = $now;
         $resto->save();
 
-        return "Data berhasil di update.";
+        return (new ResponseController)->toResponse($resto, 200, "Data berhasil diubah.");
     }
 
-    // index: method untuk hapus data (RESTful)
-    public function delete($id) {
-        $resto = Restaurant::find($id);
-        $resto->delete();
-
-        return "Data berhasil di hapus.";
+    // DELETE: method untuk hapus data (RESTful)
+    public function delete(Request $req) {
+        if (!empty($id)) {
+            $resto = Restaurant::find($id);
+        } else {
+            $resto = Restaurant::find($req->id);
+        }
+        
+        if (!empty($resto)) {
+            $data = $resto;
+            $resto->delete();
+            return (new ResponseController)->toResponse($data, 200, "Data berhasil dihapus.");
+        }
+        
+        return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
     }
 
     // method untuk masuk ke page /dashboard/restaurant/create

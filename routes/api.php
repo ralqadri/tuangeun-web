@@ -21,7 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('restaurant', [RestoController::class, 'index']);
-Route::post('restaurant', [RestoController::class, 'create']);
-// Route::put('/restaurant/{id}', [RestoController::class, 'update']);
+Route::get('restaurant/{id}', [RestoController::class, 'show']);
+
+Route::post('restaurant', [RestoController::class, 'save']);
+
 Route::put('restaurant', [RestoController::class, 'update']);
-Route::delete('/restaurant/{id}', [RestoController::class, 'delete']);
+
+Route::delete('restaurant', [RestoController::class, 'delete']);
+Route::delete('restaurant/{id}', [RestoController::class, 'delete']);
