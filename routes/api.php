@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RestoController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('restaurant', [RestoController::class, 'index']);
+Route::post('restaurant', [RestoController::class, 'create']);
+// Route::put('/restaurant/{id}', [RestoController::class, 'update']);
+Route::put('restaurant', [RestoController::class, 'update']);
+Route::delete('/restaurant/{id}', [RestoController::class, 'delete']);
