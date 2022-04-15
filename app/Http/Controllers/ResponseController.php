@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ResponseController extends Controller
 {
     public function getStatus($code) {
@@ -19,12 +21,21 @@ class ResponseController extends Controller
         }
     }
 
-    public function toResponse($data, $code, $error = '') {
+    public function hasData($data) {
+        if (!empty($data)) {
+            return "True";
+        } else {
+            return "False";
+        }
+    }
+
+    public function toResponse($data, $code, $msg = '') {
         return response()->json([
             'code' => $code,
             'status' => $this->getStatus($code),
             'data' => $data,
-            'error' => $error
+            'response' => $this->hasData($data),
+            'message' => $msg
         ]);
     }
 }

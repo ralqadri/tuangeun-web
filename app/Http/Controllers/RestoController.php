@@ -9,18 +9,6 @@ use Carbon\Carbon;
 
 class RestoController extends Controller
 {
-    // public function index()
-    // {
-    //     $restaurants=Restaurant::oldest();
-
-    //     if (request('search')) {
-    //         $restaurants->where('name_resto', 'like', '%' . request('search') . '%');
-    //     }
-
-    //     return view('restoView.restoDashboard', [
-    //         "resto" => $restaurants->get()
-    //     ]);
-    // }
 
     // GET: method untuk menampilkan semua (RESTful)
     public function index() {
@@ -28,10 +16,14 @@ class RestoController extends Controller
     }
 
     // GET: method untuk menampilkan resto yang dicari (RESTful) 
-    public function show($id='') {
-        $resto = Restaurant::find($id);
+    public function show(Request $req) {
+        if (!empty($req->id)) {
+            $resto = Restaurant::find($req->id);
+        } else {
+            $resto = Restaurant::where('nama_resto', 'LIKE', '%'.$req->nama.'%');
+        }
         if (!empty($resto)) {
-            return (new ResponseController)->toResponse($resto, 200);
+            return (new ResponseController)->toResponse($resto, 200, $req);
         } else {
             return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
         }
@@ -85,6 +77,19 @@ class RestoController extends Controller
         
         return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
     }
+
+    // public function index()
+    // {
+    //     $restaurants=Restaurant::oldest();
+
+    //     if (request('search')) {
+    //         $restaurants->where('name_resto', 'like', '%' . request('search') . '%');
+    //     }
+
+    //     return view('restoView.restoDashboard', [
+    //         "resto" => $restaurants->get()
+    //     ]);
+    // }
 
     // method untuk masuk ke page /dashboard/restaurant/create
     // public function create()

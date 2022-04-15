@@ -20,7 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('restaurant', [RestoController::class, 'index']);
+// Route::get('restaurant', [RestoController::class, 'index']);
+Route::get('restaurant', [RestoController::class, 'show']);
+// Route::get('restaurant/?{id}', [RestoController::class, 'show']);
 Route::get('restaurant/{id}', [RestoController::class, 'show']);
 
 Route::post('restaurant', [RestoController::class, 'save']);

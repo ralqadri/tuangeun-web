@@ -10,12 +10,10 @@
       float-right">Tambah Data Restaurant</a><br /><br />
       <div class="row">
           <div class="col-md-6">
-                <form action="/dashboard/restaurant">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search nama restaurant.." name="search">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </div>
-                </form>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search nama restaurant.." name="search" id="resto-search-input">
+                <button class="btn btn-primary" id="resto-search-button">Search</button>
+            </div>
           </div>
       </div>
       <div id="resto-message"></div>
