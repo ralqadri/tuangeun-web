@@ -35,7 +35,7 @@ Route::post('/login', [loginController::class, 'authenticate']);
 Route::get('/dashboard',[Site::class, 'dashboardLayout']);
 
 // !! RESTAURANT
-Route::get('/dashboard/restaurant',[RestoController::class, 'index']);
+Route::get('/dashboard/restaurant',[Site::class, 'dashboardRestaurant']);
 
 // ! ADD RESTAURANT
 // route get untuk masuk ke page untuk tambah data restoran

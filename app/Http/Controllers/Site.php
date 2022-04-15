@@ -36,4 +36,9 @@ class Site extends Controller
     {
         return view('layout.dashboardMain');
     }
+
+    public function dashboardRestaurant()
+    {
+        return view('restoView.restoDashboard');
+    }
 }
