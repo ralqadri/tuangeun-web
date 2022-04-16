@@ -28,6 +28,7 @@ Route::post('/', function () {
 
 
 //LOGIN
+Route::get('/', [loginController::class, 'index']);
 Route::get('/login', [loginController::class, 'index']);
 Route::post('/login', [loginController::class, 'authenticate']);
 
