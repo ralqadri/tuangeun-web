@@ -20,10 +20,23 @@ class RestoController extends Controller
         if (!empty($req->id)) {
             $resto = Restaurant::find($req->id);
         } else {
-            $resto = Restaurant::where('nama_resto', 'LIKE', '%'.$req->nama.'%');
+            $resto = Restaurant::where('name_resto', 'LIKE', '%'.$req->nama.'%');
         }
         if (!empty($resto)) {
             return (new ResponseController)->toResponse($resto, 200, $req);
+        } else {
+            return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
+        }
+    }
+
+    public function showSearch($nama) {
+            $restaurants = Restaurant::oldest();
+            $restaurants->where('name_resto', 'like', '%' . $nama . '%');
+            $resto = $restaurants->get();
+        
+            // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
+        if (!empty($resto)) {
+            return (new ResponseController)->toResponse($resto, 200, "Restoran(s) ditemukan");
         } else {
             return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
         }
@@ -34,7 +47,7 @@ class RestoController extends Controller
         $resto = new Restaurant;
         $now = Carbon::now()->toDateTimeString();
 
-        $resto->nama_resto = $req->nama;
+        $resto->name_resto = $req->nama;
         $resto->desc_resto = $req->desc;
         $resto->category = $req->category;
         $resto->alamat_resto = $req->alamat;
@@ -51,7 +64,7 @@ class RestoController extends Controller
         $resto = Restaurant::find($req->id);
         $now = Carbon::now()->toDateTimeString();
         
-        $resto->nama_resto = $req->nama;
+        $resto->name_resto = $req->nama;
         $resto->desc_resto = $req->desc;
         $resto->category = $req->category;
         $resto->alamat_resto = $req->alamat;
@@ -92,63 +105,63 @@ class RestoController extends Controller
     // }
 
     // method untuk masuk ke page /dashboard/restaurant/create
-    // public function create()
-    // {
-    //     return view('restoView.restoCreate');
-    // }
+    public function create()
+    {
+        return view('restoView.restoCreate');
+    }
 
     // method untuk mengambil data yang dicatat di form create() dan menyimpan ke DB
-    // public function store(Request $req)
-    // {
-    //     $now = Carbon::now()->toDateTimeString();
-    //     // insert data yang dipegang dari form (dalam var $req) ke DB
-    //     DB::table('restaurants')->insert([
-    //         'name_resto' => $req->nama,
-    //         'desc_resto' => $req->desc,
-    //         'category' => $req->category,
-    //         'alamat_resto' => $req->alamat,
-    //         'created_at' => $now,
-    //         'updated_at' => $now
-    //     ]);
+    public function store(Request $req)
+    {
+        $now = Carbon::now()->toDateTimeString();
+        // insert data yang dipegang dari form (dalam var $req) ke DB
+        DB::table('restaurants')->insert([
+            'name_resto' => $req->nama,
+            'desc_resto' => $req->desc,
+            'category' => $req->category,
+            'alamat_resto' => $req->alamat,
+            'created_at' => $now,
+            'updated_at' => $now
+        ]);
 
-    //     // redirect ke dashboard resto
-    //     return redirect('/dashboard/restaurant');
-    // }
+        // redirect ke dashboard resto
+        return redirect('/dashboard/restaurant');
+    }
 
     // method untuk masuk ke page edit data restoran yang dipilih
-    // public function edit($id)
-    // {
-    //     // mengambil data restoran sesuai id yang dipilih
-    //     $resto = DB::table('restaurants')->where('id_resto', $id)->get();
+    public function edit($id)
+    {
+        // mengambil data restoran sesuai id yang dipilih
+        $resto = DB::table('restaurants')->where('id_resto', $id)->get();
 
-    //     // passing data restoran yang di dapat ke view restoEdit.blade.php
-    //     return view('restoView.restoEdit', ['resto' => $resto]);
-    // }
+        // passing data restoran yang di dapat ke view restoEdit.blade.php
+        return view('restoView.restoEdit', ['resto' => $resto]);
+    }
 
     // method untuk update data restoran di DB
-    // public function update(Request $req)
-    // {
-    //     $now = Carbon::now()->toDateTimeString();
+    public function updateresto(Request $req)
+    {
+        $now = Carbon::now()->toDateTimeString();
         
-    //     // update data admin dimana id_restonya sesuai dgn id di request
-    //     DB::table('restaurants')->where('id_resto', $req->id)->update([
-    //         'name_resto' => $req->nama,
-    //         'desc_resto' => $req->desc,
-    //         'category' => $req->category,
-    //         'alamat_resto' => $req->alamat,
-    //         'updated_at' => $now
-    //     ]);
+        // update data admin dimana id_restonya sesuai dgn id di request
+        DB::table('restaurants')->where('id_resto', $req->id)->update([
+            'name_resto' => $req->nama,
+            'desc_resto' => $req->desc,
+            'category' => $req->category,
+            'alamat_resto' => $req->alamat,
+            'updated_at' => $now
+        ]);
 
-    //     // redirect ke dashboard resto
-    //     return redirect('/dashboard/restaurant');
-    // }
+        // redirect ke dashboard resto
+        return redirect('/dashboard/restaurant');
+    }
 
     // method untuk hapus data restoran dari DB
-    // public function delete($id) {
-    //     // menghapus data restoran sesuai dengan id yang dipilih
-    //     DB::table('restaurants')->where('id_resto', $id)->delete();
+    public function deleteresto($id) {
+        // menghapus data restoran sesuai dengan id yang dipilih
+        DB::table('restaurants')->where('id_resto', $id)->delete();
 
-    //     // redirect ke dashboard resto
-    //     return redirect('/dashboard/restaurant');
-    // }
+        // redirect ke dashboard resto
+        return redirect('/dashboard/restaurant');
+    }
 }

@@ -13,7 +13,7 @@ class Restaurant extends Model
     protected $primaryKey = 'id_resto';
 
     protected $fillable = [
-        'nama_resto',
+        'name_resto',
         'desc_resto',
         'category',
         'alamat_resto'
