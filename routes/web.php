@@ -35,7 +35,7 @@ Route::post('/login', [loginController::class, 'authenticate']);
 Route::get('/dashboard',[Site::class, 'dashboardLayout']);
 
 // !! RESTAURANT
-Route::get('/dashboard/restaurant',[RestoController::class, 'index']);
+Route::get('/dashboard/restaurant',[Site::class, 'dashboardRestaurant']);
 
 // ! ADD RESTAURANT
 // route get untuk masuk ke page untuk tambah data restoran
@@ -47,11 +47,11 @@ Route::post('/dashboard/restaurant/store', [RestoController::class, 'store']);
 //route get untuk masuk ke page data restoran yang mau di edit
 Route::get('/dashboard/restaurant/edit/{id}', [RestoController::class, 'edit']);
 //route post data restoran yang ingin di update setelah mengisi form
-Route::post('/dashboard/restaurant/update', [RestoController::class, 'update']);
+Route::post('/dashboard/restaurant/update', [RestoController::class, 'updateresto']);
 
 // ! DELETE RESTAURANT
 // route get untuk masuk delete restoran yang mau dihapus
-Route::get('/dashboard/restaurant/delete/{id}', [RestoController::class, 'delete']);
+Route::get('/dashboard/restaurant/delete/{id}', [RestoController::class, 'deleteresto']);
 
 //imgRestaurant
 Route::get('/dashboard/imgRestaurant',[ImgController::class, 'index']);
