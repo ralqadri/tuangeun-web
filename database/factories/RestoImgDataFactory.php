@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Restaurant;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RestoImgData>
  */
-class UserFactory extends Factory
+class RestoImgDataFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,12 +19,10 @@ class UserFactory extends Factory
     public function definition()
     {
         $now = Carbon::now()->toDateTimeString();
+        $id_resto = Restaurant::all()->pluck('id_resto');
         return [
-            'username' => $this->faker->userName(),
-            'password' => $this->faker->password(),
-            'full_name' => $this->faker->name(),
-            'profpic' => $this->faker->imageUrl(640, 480),
-            'email' => $this->faker->unique()->safeEmail(),
+            'img_resto' => $this->faker->imageUrl(640, 480),
+            'id_resto' => $this->faker->randomElement($id_resto),
             'created_at' => $now,
             'updated_at' => $now
         ];

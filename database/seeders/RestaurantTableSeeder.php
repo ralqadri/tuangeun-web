@@ -14,6 +14,6 @@ class RestaurantTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Restaurant::factory()->count(5)->create();
+        \App\Models\Restaurant::factory()->count(20)->create();
     }
 }

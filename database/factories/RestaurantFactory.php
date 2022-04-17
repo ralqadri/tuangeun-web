@@ -17,9 +17,9 @@ class RestaurantFactory extends Factory
     {
         $now = Carbon::now()->toDateTimeString();
         return [
-            'name_resto' => $this->faker->sentence(2, true),
+            'name_resto' => $this->faker->word(1),
             'desc_resto' => $this->faker->paragraph(2, true),
-            'category' => 'Restaurant',
+            'category' => $this->faker->randomElement(['Restaurant', 'Cafe', 'Fine Dining', 'Warung']),
             'alamat_resto' => $this->faker->streetAddress(),
             'created_at' => $now,
             'updated_at' => $now
