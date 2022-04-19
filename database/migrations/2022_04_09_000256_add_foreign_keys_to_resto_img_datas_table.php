@@ -13,8 +13,8 @@ class AddForeignKeysToRestoImgDatasTable extends Migration
      */
     public function up()
     {
-        Schema::table('resto_img_datas', function (Blueprint $table) {
-            $table->foreign(['id_resto'], 'resto_img_data_ibfk_1')->references(['id_resto'])->on('restaurants');
+        Schema::table('resto_img_data', function (Blueprint $table) {
+            $table->foreign(['id_resto'], 'resto_img_data_ibfk_1')->references(['id_resto'])->on('restaurants')->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class AddForeignKeysToRestoImgDatasTable extends Migration
      */
     public function down()
     {
-        Schema::table('resto_img_datas', function (Blueprint $table) {
+        Schema::table('resto_img_data', function (Blueprint $table) {
             $table->dropForeign('resto_img_data_ibfk_1');
         });
     }
