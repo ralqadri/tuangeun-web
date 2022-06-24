@@ -15,7 +15,7 @@ class RestoController extends Controller
         return (new ResponseController)->toResponse(Restaurant::all(), 200);
     }
 
-    // GET: method untuk menampilkan resto yang dicari (RESTful) 
+    // GET: method untuk menampilkan resto yang dicari (RESTful)
     public function show(Request $req) {
         if (!empty($req->id)) {
             $resto = Restaurant::find($req->id);
@@ -33,12 +33,24 @@ class RestoController extends Controller
             $restaurants = Restaurant::oldest();
             $restaurants->where('name_resto', 'like', '%' . $nama . '%');
             $resto = $restaurants->get();
-        
+
             // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
         if (!empty($resto)) {
             return (new ResponseController)->toResponse($resto, 200, "Restoran(s) ditemukan");
         } else {
             return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
+        }
+    }
+    public function showSearchCategory($nama) {
+            $restaurants = Restaurant::oldest();
+            $restaurants->where('category', 'like', '%' . $nama . '%');
+            $resto = $restaurants->get();
+
+            // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
+        if (!empty($resto)) {
+            return (new ResponseController)->toResponse($resto, 200, "categories ditemukan");
+        } else {
+            return (new ResponseController)->toResponse($resto, 404, "categories tidak ditemukan!");
         }
     }
 
@@ -63,7 +75,7 @@ class RestoController extends Controller
         // $resto = Restaurant::find($id);
         $resto = Restaurant::find($req->id);
         $now = Carbon::now()->toDateTimeString();
-        
+
         $resto->name_resto = $req->nama;
         $resto->desc_resto = $req->desc;
         $resto->category = $req->category;
@@ -81,13 +93,13 @@ class RestoController extends Controller
         } else {
             $resto = Restaurant::find($req->id);
         }
-        
+
         if (!empty($resto)) {
             $data = $resto;
             $resto->delete();
             return (new ResponseController)->toResponse($data, 200, "Data berhasil dihapus.");
         }
-        
+
         return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
     }
 
@@ -142,7 +154,7 @@ class RestoController extends Controller
     public function updateresto(Request $req)
     {
         $now = Carbon::now()->toDateTimeString();
-        
+
         // update data admin dimana id_restonya sesuai dgn id di request
         DB::table('restaurants')->where('id_resto', $req->id)->update([
             'name_resto' => $req->nama,
