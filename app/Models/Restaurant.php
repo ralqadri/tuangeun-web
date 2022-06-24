@@ -16,6 +16,11 @@ class Restaurant extends Model
         'name_resto',
         'desc_resto',
         'category',
-        'alamat_resto'
+        'alamat_resto',
+        'longitude',
+        'latitude',
+        'imageLink',
+        'googleMapsLink'
+
     ];
 }
