@@ -19,8 +19,8 @@ class CreateRestaurantsTable extends Migration
             $table->string('desc_resto');
             $table->string('category', 20);
             $table->string('alamat_resto');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->float('latitude');
+            $table->float('longitude');
             $table->string('imageLink');
             $table->string('googleMapsLink');
             $table->timestamps();
