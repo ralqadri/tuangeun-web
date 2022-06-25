@@ -25,7 +25,9 @@ Route::get('restaurant', [RestoController::class, 'index']);
 Route::get('restaurant/{nama}', [RestoController::class, 'showSearch']);
 Route::get('restaurant/categories/{nama}', [RestoController::class, 'showSearchCategory']);
 Route::get('restaurant/{id}', [RestoController::class, 'show']);
-Route::get('restaurant/{id}', [RestoController::class, 'show']);
+Route::get('ratings', [RestoController::class, 'showRating']);
+Route::get('ratings/{id_resto}', [RestoController::class, 'showRatingByIdResto']);
+
 
 Route::post('restaurant', [RestoController::class, 'save']);
 

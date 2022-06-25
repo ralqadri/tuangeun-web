@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rating;
 use App\Models\Restaurant;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -78,9 +79,31 @@ class DatabaseSeeder extends Seeder
             "imageLink" => "https://lh5.googleusercontent.com/proxy/U_nIwin3Rm731vY_u0rEdZhrMUxuujnj87gA2rul_MWvIWosQB40WUHHg6U0Je3cnyUOap40QLJLgM88iw7NVjpdI7w2q3DPTgoOhq_W0lHmL8Etqq-0KqKYBgGnFxV4wcv3jjqhjY7AkBiBy-RE_gBwNiFeL14=w408-h272-k-no",
             "googleMapsLink" => "https://www.google.com/maps/place/Chingu+Cafe/@-6.9011691,107.6101206,17z/data=!3m1!4b1!4m5!3m4!1s0x2e68e64f5f95558d:0xb05a0d4add81a40b!8m2!3d-6.9011691!4d107.6101206?hl=id"
         ]);
+
         \App\Models\Restaurant::factory()->count(20)->create();
         \App\Models\RestoImgData::factory()->count(15)->create();
         \App\Models\User::factory()->count(15)->create();
+
+
+        Rating::create([
+            'rate' => 5,
+            'review' => "makanannya enak",
+            'id_resto' => 1,
+            'id_user' => 1,
+        ]);
+        Rating::create([
+            'rate' => 2,
+            'review' => "Pelayanannya kurang",
+            'id_resto' => 2,
+            'id_user' => 2,
+        ]);
+        Rating::create([
+            'rate' => 3,
+            'review' => "vibes tempatnya menarik",
+            'id_resto' => 1,
+            'id_user' => 3,
+        ]);
+        \App\Models\Rating::factory()->count(15)->create();
 
     }
 }

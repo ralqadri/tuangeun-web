@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,36 @@ class RestoController extends Controller
         }
     }
 
+public function showRating() {
+    return (new ResponseController)->toResponse(Rating::all(), 200);
+}
+public function showRatingByIdResto($id_resto) {
+        $rating = Rating::oldest();
+        $rating->where('id_resto','=',$id_resto);
+        $resto = $rating->get();
+
+        // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
+    if (!empty($resto)) {
+        return (new ResponseController)->toResponse($resto, 200, "reviews ditemukan");
+    } else {
+        return (new ResponseController)->toResponse($resto, 404, "reviews tidak ditemukan!");
+    }
+}
+/* public function showSearchRating($nama_resto) {
+        $rating = Rating::oldest();
+        $restaurants = Restaurant::oldest();
+        $restaurants->where('name_resto', 'like', '%' . $nama_resto . '%');
+        $id_resto = $restaurants->get(['id_resto']);
+        $rating->where('id_resto','like', '%' .  $id_resto . '%');
+        $resto = $rating->get();
+
+        // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
+    if (!empty($resto)) {
+        return (new ResponseController)->toResponse($resto, 200, "reviews ditemukan");
+    } else {
+        return (new ResponseController)->toResponse($resto, 404, "reviews tidak ditemukan!");
+    }
+} */
     // POST: method untuk menyimpan data (RESTful)
     public function save(Request $req) {
         $resto = new Restaurant;
