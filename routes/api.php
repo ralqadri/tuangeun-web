@@ -30,7 +30,7 @@ Route::get('restaurant/{id}', [RestoController::class, 'show']);
 Route::post('restaurant', [RestoController::class, 'save']);
 
 Route::put('restaurant', [RestoController::class, 'update']);
-
+Route::get('restaurant/categories/{nama}', [RestoController::class, 'showSearchCategory']);
 Route::delete('restaurant', [RestoController::class, 'delete']);
 Route::delete('restaurant/{id}', [RestoController::class, 'delete']);
 
