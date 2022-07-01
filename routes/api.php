@@ -40,3 +40,9 @@ Route::post('register', [UserController::class, 'registerApi']);
 Route::get('login', [UserController::class, 'loginApi']);
 Route::get('users', [UserController::class, 'indexUser']);
 Route::get('users/{id}', [UserController::class, 'showUserSearch']);
+
+
+//RATING
+
+Route::get('ratings', [RestoController::class, 'showRating']);
+Route::get('ratings/{id_resto}', [RestoController::class, 'showRatingByIdResto']);
