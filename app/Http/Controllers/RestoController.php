@@ -23,7 +23,7 @@ class RestoController extends Controller
         } else {
             $resto = Restaurant::where('name_resto', 'LIKE', '%'.$req->nama.'%');
         }
-        if (!empty($resto)) {
+        if ($resto->isNotEmpty()) {
             return (new ResponseController)->toResponse($resto, 200, $req);
         } else {
             return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
@@ -36,7 +36,7 @@ class RestoController extends Controller
             $resto = $restaurants->get();
 
             // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
-        if (!empty($resto)) {
+        if ($resto->isNotEmpty()) {
             return (new ResponseController)->toResponse($resto, 200, "Restoran(s) ditemukan");
         } else {
             return (new ResponseController)->toResponse($resto, 404, "Restoran tidak ditemukan!");
@@ -48,7 +48,7 @@ class RestoController extends Controller
             $resto = $restaurants->get();
 
             // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
-        if (!empty($resto)) {
+        if ($resto->isNotEmpty()) {
             return (new ResponseController)->toResponse($resto, 200, "categories ditemukan");
         } else {
             return (new ResponseController)->toResponse($resto, 404, "categories tidak ditemukan!");
@@ -64,7 +64,7 @@ public function showRatingByIdResto($id_resto) {
         $resto = $rating->get();
 
         // $resto = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
-    if (!empty($resto)) {
+    if ($resto->isNotEmpty()) {
         return (new ResponseController)->toResponse($resto, 200, "reviews ditemukan");
     } else {
         return (new ResponseController)->toResponse($resto, 404, "reviews tidak ditemukan!");
@@ -125,7 +125,7 @@ public function showRatingByIdResto($id_resto) {
             $resto = Restaurant::find($req->id);
         }
 
-        if (!empty($resto)) {
+        if ($resto->isNotEmpty()) {
             $data = $resto;
             $resto->delete();
             return (new ResponseController)->toResponse($data, 200, "Data berhasil dihapus.");

@@ -18,6 +18,8 @@ class ResponseController extends Controller
                 return 'Not Found';
             case 500:
                 return 'Internal Server Error';
+            case 201:
+                return 'VERIFIED';
         }
     }
 

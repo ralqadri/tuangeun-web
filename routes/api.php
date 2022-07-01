@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RestoController;
 
 /*
@@ -23,11 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('restaurant', [RestoController::class, 'index']);
 // Route::get('restaurant', [RestoController::class, 'show']);
 Route::get('restaurant/{nama}', [RestoController::class, 'showSearch']);
-Route::get('restaurant/categories/{nama}', [RestoController::class, 'showSearchCategory']);
 Route::get('restaurant/{id}', [RestoController::class, 'show']);
-Route::get('ratings', [RestoController::class, 'showRating']);
-Route::get('ratings/{id_resto}', [RestoController::class, 'showRatingByIdResto']);
-
+Route::get('restaurant/{id}', [RestoController::class, 'show']);
 
 Route::post('restaurant', [RestoController::class, 'save']);
 
@@ -35,3 +33,10 @@ Route::put('restaurant', [RestoController::class, 'update']);
 
 Route::delete('restaurant', [RestoController::class, 'delete']);
 Route::delete('restaurant/{id}', [RestoController::class, 'delete']);
+
+//USER
+
+Route::post('register', [UserController::class, 'registerApi']);
+Route::get('login', [UserController::class, 'loginApi']);
+Route::get('users', [UserController::class, 'indexUser']);
+Route::get('users/{id}', [UserController::class, 'showUserSearch']);
