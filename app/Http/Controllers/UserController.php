@@ -60,7 +60,7 @@ class UserController extends Controller
             $user = $users->get();
 
             // $user = Restaurant::where('name_resto', 'LIKE', '%'.$nama.'%');
-        if (!empty($user)) {
+        if ($user->isNotEmpty()) {
             return (new ResponseController)->toResponse($user, 200, "User(s) ditemukan");
         } else {
             return (new ResponseController)->toResponse($user, 404, "User tidak ditemukan!");
