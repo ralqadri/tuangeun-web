@@ -1,4 +1,5 @@
-<p align="center">
-  <img width="400" src="https://i.imgur.com/ipoANVQ.png">
-</p>
-for Aplikasi Berbasis Platform course -- work in progress
+# tuangeun-mobile
+A web API platform focused on discovering Bandung's local culinary choices, based on Laravel/PHP. Made for our Aplikasi Berbasis Platform course.
+
+# Notes
+- This repository holds the API made for the [mobile application of Tuangeun](https://github.com/ralqadri/tuangeun-mobile) to run.
